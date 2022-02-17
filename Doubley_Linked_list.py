@@ -75,7 +75,9 @@ class doubleLinkedList:
             node.next.prev = node.prev
         self.size-=1
 
-
+    def remove_first(self):
+        if self.head is not None:
+            self.__remove_node(self.head)
 
     def remove_last(self):
         if self.tail is not None:
@@ -97,7 +99,14 @@ class doubleLinkedList:
             vals.append(node.val)
             node=node.next
         return f"[{', '.join(str(val) for val in vals)}]"
+    
+    def back(self):
+        return self.tail.val
 
+    def front(self):
+        return self.head.val
+    
+    
 
 my_list=doubleLinkedList()
 my_list.add_inThe_back(3)

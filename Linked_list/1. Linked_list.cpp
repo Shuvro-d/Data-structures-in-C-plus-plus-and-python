@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define ll long long int
+
 using namespace std;
 
 class node
@@ -32,14 +32,16 @@ private:
         cout << tmp->data << " ";
     }
 
-    node *reverse_recursive(node *tmp, node *prev = NULL)
+    void reverse_recursive(node *tmp)
     {
-        if(tmp == NULL) // Base case: Reached the end of the list
-            return prev;
-
-        node *nextNode = tmp->next;              // Save the next node
-        tmp->next = prev;                        // Reverse the link
-        return reverse_recursive(nextNode, tmp); // Recur for the next node
+        if(tmp->next == NULL) {
+            head=tmp;
+            return;
+        }
+        reverse_recursive(tmp->next);
+        node *tmp2=tmp->next;
+        tmp2->next=tmp;
+        tmp->next=NULL;
     }
 
 public:
@@ -199,9 +201,11 @@ public:
 
    
 
+  
+
     void reverse_list_recursively()
     {
-        head = reverse_recursive(head); // Update head to the new head of the reversed list
+        reverse_recursive(head);
     }
 };
 
